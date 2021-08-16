@@ -1,0 +1,111 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1268694435463666348
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 702409948969024753}
+  - component: {fileID: 5573766725717039795}
+  - component: {fileID: 1473676241795547112}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &702409948969024753
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1268694435463666348}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -10}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5573766725717039795
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1268694435463666348}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b90024450b6a1542b3881ed49f928e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  boardManager: {fileID: 0}
+  reGenerateMap: 0
+--- !u!114 &1473676241795547112
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1268694435463666348}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e93b8dbf72528df47be0b5b3dc95274a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  wallMidTile:
+  - {fileID: 8854297256349628274, guid: 5101a7cab7d0e31439782f7e79ab53e5, type: 3}
+  - {fileID: 2466462560699829600, guid: 7e1c6692828f5784ba8e6827a1f0c1b2, type: 3}
+  - {fileID: 6607342060026844445, guid: 20cb37d16933d63499ec2db61e990708, type: 3}
+  - {fileID: 1043967270901169094, guid: 7d03ca5b5b48da040b94cdb43b8de8e4, type: 3}
+  wallMidTileProb:
+  - 0.05
+  - 0.7
+  - 0.1
+  - 0.15
+  wallSideTile:
+  - {fileID: 1379759360986207278, guid: 621b77b995d22b341898c05b285d505c, type: 3}
+  - {fileID: 8854297256349628274, guid: 5101a7cab7d0e31439782f7e79ab53e5, type: 3}
+  - {fileID: 2466462560699829600, guid: 7e1c6692828f5784ba8e6827a1f0c1b2, type: 3}
+  wallSideTileProb:
+  - 0.6
+  - 0.3
+  - 0.1
+  MinLenOfEdgeRate: 0.7
+  MinLenOfLedRate: 0.1
+  building1Object: {fileID: 1283595779645409660, guid: 9853d0f16c0c38f40ba673cc44e56422, type: 3}
+  building2Object: {fileID: 20805442371190894, guid: b90fee175b434f04db0bebb0be73bf44, type: 3}
+  building1GenerateNum: 2
+  building2GenerateNum: 2
+  buildingMinDis: 50
+  buildingGenerateRetryTime: 100
+  brickSprite: {fileID: 21300000, guid: 6b6717bad5a2f8f4997ae270e779b230, type: 3}
+  brickSprites:
+  - {fileID: 21300000, guid: 1cc33884c75530e4f8b48bb8ebec4fde, type: 3}
+  - {fileID: 21300000, guid: ffd0346d131245c4385cb83e5698a346, type: 3}
+  brickSpritesProb:
+  - 0.2
+  - 0.3
+  nagaStoneSprite: {fileID: 21300000, guid: 73b188541ab8c9e49b76003e0a3666c7, type: 3}
+  nagaStoneSprites:
+  - {fileID: 21300000, guid: 3b27954a102cb794a92321ba1cdf3a81, type: 3}
+  - {fileID: 21300000, guid: 2bbd09f64749f924d9625b87d41b0c03, type: 3}
+  nagaStoneSpritesProb:
+  - 0.2
+  - 0.3
+  redSandSprite: {fileID: 21300000, guid: e7ff55eff75500d4b99e2cbc1e963a18, type: 3}
+  redSandSprites:
+  - {fileID: 21300000, guid: e485c64ab3237cb4c956664baf97a36e, type: 3}
+  - {fileID: 21300000, guid: 4cf0f1354406a994880e311854169c05, type: 3}
+  - {fileID: 21300000, guid: fe223661c281f9648b7ea10fa632c621, type: 3}
+  redSandSpritesProb:
+  - 0.1
+  - 0.1
+  - 0.01
+  floorObject: {fileID: 3956393806739632095, guid: fca5c3f1c4e078845ab80596f9bd2f61, type: 3}
+  floorSandObject: {fileID: 5424121894826783109, guid: ba0442603f2ac594bb660612da4293e5, type: 3}
