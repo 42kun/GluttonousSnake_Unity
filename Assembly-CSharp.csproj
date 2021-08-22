@@ -57,9 +57,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Script\BoardManager.cs" />
+    <Compile Include="Assets\Script\Tool_FixPrefab.cs" />
+    <Compile Include="Assets\Script\Snake.cs" />
     <Compile Include="Assets\Script\GameManager.cs" />
     <Compile Include="Assets\Script\LoadGameManager.cs" />
-    <Compile Include="Assets\Script\Tool_FixPrefab.cs" />
+    <Compile Include="Assets\Script\Apple.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\csc.rsp" />

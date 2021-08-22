@@ -6,6 +6,8 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance = null;
     public BoardManager boardManager;
+    [HideInInspector]
+    public bool canMapGenerate = true;
 
 #if TEST
     public bool reGenerateMap  = false;
@@ -41,7 +43,8 @@ public class GameManager : MonoBehaviour
 
     void InitGame()
     {
-        boardManager.BuildMap();
+        if(canMapGenerate)
+            boardManager.BuildMap();
     }
 
     // Start is called before the first frame update

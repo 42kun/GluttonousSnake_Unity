@@ -5,12 +5,13 @@ using UnityEngine;
 public class LoadGameManager : MonoBehaviour
 {
     public GameObject gameManager;
-    public bool canGameStart = false;
+    public bool canMapGenerate = true;
     private void Awake()
     {
-        if (GameManager.instance == null && canGameStart)
+        if (GameManager.instance == null)
         {
             Instantiate(gameManager);
+            gameManager.GetComponent<GameManager>().canMapGenerate = canMapGenerate;
         }
     }
 }

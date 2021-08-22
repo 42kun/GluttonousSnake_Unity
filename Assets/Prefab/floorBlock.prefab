@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1047616121398672149}
   - component: {fileID: 1980729867150824537}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: "\u5A1C\u8FE6\u77F3 (104)"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -92,7 +92,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4577237185797848461}
   - component: {fileID: 7935198579696011223}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: "\u5A1C\u8FE6\u77F3 (105)"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -173,7 +173,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8517002220728570631}
-  m_Layer: 0
+  - component: {fileID: -3002357375731018589}
+  m_Layer: 3
   m_Name: floorBlock
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -198,6 +199,17 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!210 &-3002357375731018589
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3956393806739632095}
+  m_Enabled: 1
+  m_SortingLayerID: 863738361
+  m_SortingLayer: 1
+  m_SortingOrder: 0
 --- !u!1 &3990376868215397482
 GameObject:
   m_ObjectHideFlags: 0
@@ -208,7 +220,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6344514189628154333}
   - component: {fileID: 4841441341328854143}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: "\u5A1C\u8FE6\u77F3 (103)"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -290,7 +302,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3265094888506337456}
   - component: {fileID: 9002745618022113089}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: "\u5A1C\u8FE6\u77F3 (102)"
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -102,10 +102,8 @@ MonoBehaviour:
   redSandSprites:
   - {fileID: 21300000, guid: e485c64ab3237cb4c956664baf97a36e, type: 3}
   - {fileID: 21300000, guid: 4cf0f1354406a994880e311854169c05, type: 3}
-  - {fileID: 21300000, guid: fe223661c281f9648b7ea10fa632c621, type: 3}
   redSandSpritesProb:
   - 0.1
   - 0.1
-  - 0.01
   floorObject: {fileID: 3956393806739632095, guid: fca5c3f1c4e078845ab80596f9bd2f61, type: 3}
   floorSandObject: {fileID: 5424121894826783109, guid: ba0442603f2ac594bb660612da4293e5, type: 3}
