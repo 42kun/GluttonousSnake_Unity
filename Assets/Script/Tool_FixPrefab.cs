@@ -13,6 +13,7 @@ public class Tool_FixPrefab : MonoBehaviour
     public string foldName;
 
     public string[] overlapWhilelist;
+#if TEST
     private void Awake()
     {
         if (!work)
@@ -119,4 +120,5 @@ public class Tool_FixPrefab : MonoBehaviour
         }
 
     }
+#endif
 }

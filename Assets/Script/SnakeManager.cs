@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
-public class Snake : MonoBehaviour
+public class SnakeManager : SnakeTrigger
 {
     private SnakeObject snakeHead;
     private SnakeObject snakeBodyTail;
@@ -73,9 +74,16 @@ public class Snake : MonoBehaviour
             v = velocity.Peek();
             q = rotation.Peek();
         }
+
+        public void ApplyState()
+        {
+            obj.transform.rotation = rotation.Peek();
+            rb2D.velocity = velocity.Peek();
+        }
     }
-    private void Awake()
+    protected override void Awake()
     {
+        base.Awake();
         snakeHolder = new GameObject("najia").transform;
         snakeHead = new SnakeObject(this.gameObject);
         snakeHeadRigid = GetComponent<Rigidbody2D>();
@@ -99,8 +107,21 @@ public class Snake : MonoBehaviour
     {
         MoveSnakeHead();
         MoveSnakeBodies();
+        DebugDrawSnake();
     }
 
+    //private void OnCollisionEnter2D(Collision2D collision)
+    //{
+    //    Debug.Log(collision);
+    //}
+    //private void OnTriggerEnter2D(Collider2D collision)
+    //{
+    //    Debug.Log(collision.gameObject.tag);
+    //}
+
+    /// <summary>
+    /// 初始化蛇身
+    /// </summary>
     void GenerateSnakeBodies()
     {
         Vector2 headPos = snakeHead.obj.transform.position;
@@ -118,6 +139,10 @@ public class Snake : MonoBehaviour
         snakeBodyTail = s_obj;
     }
 
+    /// <summary>
+    /// 蛇头控制，同时更新蛇头状态
+    /// 为蛇身赋予初始状态
+    /// </summary>
     public void MoveSnakeHead()
     {
         if (first_move)
@@ -177,6 +202,10 @@ public class Snake : MonoBehaviour
         }
     }
     //每distanceBetween更新一次状态数组，其余时间移动即可
+
+    /// <summary>
+    /// 更新蛇身状态，同时移动蛇身
+    /// </summary>
     void MoveSnakeBodies()
     {
         SnakeObject p = snakeHead.next;
@@ -196,15 +225,44 @@ public class Snake : MonoBehaviour
         p = snakeHead.next;
         while (p != null)
         {
-            Vector2 v;
-            Quaternion q;
-            p.PeekState(out v, out q);
-            p.obj.transform.rotation = q;
-            p.rb2D.velocity = v;
+            p.ApplyState();
             p = p.next;
         }
     }
 
+    /// <summary>
+    /// 增长一节
+    /// 先计算应该生成的位置
+    /// 再更新链表
+    /// </summary>
+    public void snakeGrow()
+    {
+        //获取尾巴与尾巴前一节的距离
+        float dis = (snakeBodyTail.pre.obj.transform.position - snakeBodyTail.obj.transform.position).magnitude;
+        //尾巴速度归一化
+        Vector2 vel = snakeBodyTail.velocity.Peek().normalized;
+        Vector2 pos = (Vector2)snakeBodyTail.obj.transform.position - vel * dis;
+
+        GameObject t_obj = Instantiate(snakeBody, new Vector3(pos.x, pos.y, 0), Quaternion.identity);
+        t_obj.transform.SetParent(snakeHolder);
+
+        SnakeObject s_obj = new SnakeObject(t_obj);
+        for(int i = 0; i < offset; i++)
+        {
+            s_obj.velocity.Enqueue(snakeBodyTail.velocity.Peek());
+            s_obj.rotation.Enqueue(snakeBodyTail.rotation.Peek());
+        }
+        s_obj.ApplyState();
+
+        s_obj.pre = snakeBodyTail;
+        snakeBodyTail.next = s_obj;
+
+        snakeBodyTail = s_obj;
+    }
+
+    /// <summary>
+    /// 傻逼协程，卡成狗
+    /// </summary>
     //protected IEnumerator SmoothMovement(SnakeObject p,float moveTime)
     //{
     //    float time = 0;
@@ -241,19 +299,6 @@ public class Snake : MonoBehaviour
     //    p.rb2D.MovePosition(p.position);
     //}
 
-    #region MarkerTools
-    public void ClearMarkerList()
-    {
-        //snakeBodiesState.Clear();
-        //snakeBodiesState.Add(new Marker(transform.position, transform.rotation));
-    }
-    public void UpdateMaskerList()
-    {
-        //markerList.Add(new Marker(transform.position, transform.rotation));
-    }
-
-    #endregion
-
     #region OtherTools
     /// <summary>
     /// 计算一个Vector2绕指定轴旋转指定角度后所得到的向量。
@@ -280,6 +325,17 @@ public class Snake : MonoBehaviour
         Vector3 cross = Vector3.Cross(from, to);
         angle = Vector2.Angle(from, to);
         return cross.z > 0 ? -angle : angle;
+    }
+
+
+    void DebugDrawSnake()
+    {
+        SnakeObject p = snakeHead.next;
+        while (p != null)
+        {
+            Debug.DrawLine(p.obj.transform.position, (Vector2)p.obj.transform.position + p.velocity.Peek());
+            p = p.next;
+        }
     }
     #endregion
 }

@@ -45,7 +45,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   boardManager: {fileID: 0}
-  reGenerateMap: 0
+  snakeManager: {fileID: 0}
+  snakePrefab: {fileID: 4782603638927880725, guid: 80c30ef60a7406c4e984e267751c587c, type: 3}
+  uiManagement: {fileID: 0}
+  eatFoodSound: {fileID: 0}
+  backgroundSound: {fileID: 0}
+  WinSound: {fileID: 0}
+  FailSound: {fileID: 0}
+  canMapGenerate: 1
+  gameState: 0
+  score: 0
 --- !u!114 &1473676241795547112
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -107,3 +116,8 @@ MonoBehaviour:
   - 0.1
   floorObject: {fileID: 3956393806739632095, guid: fca5c3f1c4e078845ab80596f9bd2f61, type: 3}
   floorSandObject: {fileID: 5424121894826783109, guid: ba0442603f2ac594bb660612da4293e5, type: 3}
+  apple: {fileID: 2778177799503392795, guid: d088832915e57914ea81e25b2d646deb, type: 3}
+  goldenApple: {fileID: 6390989469874805092, guid: 2296990edfcb2194eb0ce0bf03a82410, type: 3}
+  appleExistTime: 10
+  goldenAppleGap: 5
+  nowFoodPosition: {x: 0, y: 0}

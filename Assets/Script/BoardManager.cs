@@ -70,6 +70,20 @@ public class BoardManager : MonoBehaviour
     public GameObject floorObject;
     public GameObject floorSandObject;
 
+
+    public GameObject apple;
+    public GameObject goldenApple;
+
+    public float appleExistTime = 10;
+    public float goldenAppleGap = 20;
+
+    bool foodReadySpawn = false;
+    List<Vector2Int> avalFoodPosition = new List<Vector2Int>();
+    GameObject nowFoodObject = null;
+    public Vector2Int nowFoodPosition;
+    int hasSpawnApple = 0;
+    float foodExistTime = 0;
+
     private void Awake()
     {
         
@@ -84,8 +98,62 @@ public class BoardManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        if (!foodReadySpawn)
+            return;
+        if (nowFoodObject == null)
+        {
+            nowFoodPosition =  GenerateOneFood();
+        }
+        else
+        {
+            foodExistTime += Time.deltaTime;
+            if (foodExistTime > appleExistTime)
+                DestoryFood();
+        }
     }
+
+
+
+    /// <summary>
+    /// 开启食物生成
+    /// </summary>
+    public void StartFoodSpawn()
+    {
+        foreach (Vector2Int p in chunkInfo.Keys)
+        {
+            if (!chunkInfo[p].isWall)
+                avalFoodPosition.Add(p);
+        }
+        foodReadySpawn = true;
+    }
+
+    /// <summary>
+    /// 生成一个新食物
+    /// </summary>
+    /// <returns></returns>
+    Vector2Int GenerateOneFood()
+    {
+        Vector2Int pos = avalFoodPosition[Random.Range(0, avalFoodPosition.Count)];
+        //Debug.Log(string.Format("food generate,pos={0}", pos));
+        hasSpawnApple++;
+        foodExistTime = 0;
+        if (hasSpawnApple % goldenAppleGap == 0)
+            nowFoodObject = Instantiate(goldenApple, new Vector3(pos.x * uint_scale, pos.y * uint_scale, 0), Quaternion.identity);
+        else
+            nowFoodObject = Instantiate(apple, new Vector3(pos.x * uint_scale, pos.y * uint_scale, 0), Quaternion.identity);
+        return pos;
+    }
+
+    /// <summary>
+    /// 销毁食物，在任何情况下调用都不会产生逻辑错误
+    /// </summary>
+    public void DestoryFood()
+    {
+        Destroy(nowFoodObject);
+        nowFoodObject = null;
+        foodExistTime = 0;
+    }
+
 
     public void BuildMap()
     {
@@ -113,6 +181,8 @@ public class BoardManager : MonoBehaviour
         GenerateBuildings();
         GenerateFloors();
         RandomChangeBlocksSprite();
+        hasSpawnApple = 0;
+        foodExistTime = 0;
     }
 
     public void ClearMap()
@@ -630,6 +700,7 @@ public class BoardManager : MonoBehaviour
                 Vector2Int pos_t = new Vector2Int(center.x + x_off, center.y + y_off);
                 if (!chunkInfo.ContainsKey(pos_t))
                 {
+                    chunkInfo[pos_t] = new ChunkInfo(floorHasCheck: true);
                     GameObject t_obj = Instantiate(floorSandObject,
                         new Vector3(pos_t.x * uint_scale, pos_t.y * uint_scale, 0),
                         Quaternion.identity);

@@ -3,7 +3,10 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - wall
+  - golden_apple
+  - apple
   layers:
   - Default
   - TransparentFX
@@ -46,4 +49,7 @@ TagManager:
     locked: 0
   - name: Item
     uniqueID: 17506039
+    locked: 0
+  - name: UI
+    uniqueID: 2950589111
     locked: 0
